@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Botiquín Solidario Huancayo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7f6;--surface:#fff;--ink:#14302e;--muted:#4d6663;--line:#cfdcd9;--brand:#0e5551;--brand-ink:#fff;--accent:#b01e5c;--accent-soft:#f6dbe7;--ochre:#e2a526;--ok:#17724a;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a19;--surface:#142927;--ink:#e6f0ee;--muted:#9fb6b2;--line:#27413e;--brand:#58c2b8;--brand-ink:#082220;--accent:#f06fa1;--accent-soft:#3a1a29;--ok:#5fd29b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1a19;--surface:#142927;--ink:#e6f0ee;--muted:#9fb6b2;--line:#27413e;--brand:#58c2b8;--brand-ink:#082220;--accent:#f06fa1;--accent-soft:#3a1a29;--ok:#5fd29b;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 "Source Sans 3",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font:800 1.15rem "Bricolage Grotesque",sans-serif;display:flex;gap:10px;align-items:center;text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:8px;background:var(--brand);display:grid;place-items:center;color:var(--brand-ink);font-style:normal;font-weight:800}
+nav a{margin-left:18px;text-decoration:none;font-weight:600;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.hero{padding:28px 0 36px}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:800;max-width:15ch;letter-spacing:-.02em}
+.hero p{max-width:52ch;color:var(--muted);font-size:1.1rem;margin:16px 0 24px}
+.band{height:10px;border-radius:5px;margin:0 0 28px;background:repeating-linear-gradient(90deg,var(--accent) 0 28px,var(--ochre) 28px 44px,var(--brand) 44px 72px,var(--surface) 72px 80px)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.choice{all:unset;box-sizing:border-box;cursor:pointer;padding:22px;border-radius:14px;border:2px solid var(--brand);background:var(--brand);color:var(--brand-ink);display:block}
+.choice.alt{background:var(--surface);color:var(--ink);border-color:var(--accent)}
+.choice:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.choice b{display:block;font:700 1.4rem "Bricolage Grotesque",sans-serif}
+.choice span{opacity:.88}
+section{padding:36px 0}
+h2{font-size:clamp(1.6rem,4.5vw,2.2rem);margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.tabs{display:flex;gap:6px;border-bottom:2px solid var(--line)}
+.tab{all:unset;cursor:pointer;padding:12px 18px;font-weight:600;border-bottom:4px solid transparent;margin-bottom:-2px;color:var(--muted)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab:focus-visible{outline:3px solid var(--accent)}
+.panel{background:var(--surface);border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;padding:24px}
+.panel[hidden]{display:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.full{grid-column:1/-1}
+label{display:block;font-weight:600;margin-bottom:5px}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:11px 12px;min-height:46px}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+small{color:var(--muted);display:block;margin-top:4px}
+.rules{background:var(--accent-soft);border-radius:10px;padding:12px 16px;margin:0 0 18px}
+.rules ul{margin:6px 0 0;padding-left:20px}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.check input{width:22px;min-height:22px;margin-top:2px}
+.btn{font:700 1rem "Bricolage Grotesque",sans-serif;padding:14px 24px;border-radius:10px;border:0;cursor:pointer;background:var(--accent);color:#fff;min-height:48px}
+.btn.sec{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.ok{display:none;margin-top:18px;border:2px solid var(--ok);border-radius:12px;padding:16px}
+.ok.show{display:block}
+.ok strong{font:800 1.5rem "Bricolage Grotesque",sans-serif;color:var(--ok);display:block}
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.tools>*{flex:1 1 200px}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.med{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.med h3{font-size:1.15rem}
+.med .row{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:.95rem}
+.tag{font-weight:600;font-size:.85rem;padding:2px 10px;border-radius:99px;background:var(--accent-soft);align-self:flex-start}
+.tag.rx{background:var(--ochre);color:#2a1d00}
+.tag.free{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok)}
+.med button{margin-top:auto}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s;padding:0;list-style:none;margin:0}
+.steps li{counter-increment:s;border-left:4px solid var(--brand);padding:4px 0 4px 14px}
+.steps li::before{content:counter(s);font:800 1.8rem "Bricolage Grotesque",sans-serif;color:var(--accent);display:block}
+.points{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.pt{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:16px}
+.pt h3{font-size:1.05rem;margin-bottom:4px}
+.pt p{margin:2px 0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:.95rem}
+.demo{background:var(--ochre);color:#2a1d00;text-align:center;padding:8px 12px;font-weight:600;font-size:.92rem}
+@media (max-width:720px){.choices,.grid,.steps{grid-template-columns:1fr}nav{display:none}.panel{padding:18px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Prototipo de interfaz: los datos y puntos de entrega son de ejemplo.</div>
+<div class="wrap">
+<header>
+  <a class="logo" href="#"><i>+</i> Botiquín Solidario</a>
+  <nav><a href="#inventario">Disponibles</a><a href="#como">Cómo funciona</a><a href="#puntos">Puntos de entrega</a></nav>
+</header>
+
+<div class="hero">
+  <h1>Medicinas que sobran, salud que falta.</h1>
+  <p>En Huancayo, vecinos y farmacias donan medicamentos sin usar para que otras personas con receta médica puedan recibirlos gratis.</p>
+  <div class="band" aria-hidden="true"></div>
+  <div class="choices">
+    <button class="choice" data-go="donar"><b>Quiero donar</b><span>Tengo medicamentos sin abrir y vigentes</span></button>
+    <button class="choice alt" data-go="pedir"><b>Necesito un medicamento</b><span>Tengo una receta médica</span></button>
+  </div>
+</div>
+
+<section id="formularios" aria-labelledby="t-form">
+  <h2 id="t-form">Registra tu donación o tu pedido</h2>
+  <p class="sub">Toma menos de 3 minutos. Te daremos un código para recoger o entregar.</p>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-donar" aria-controls="p-donar" aria-selected="true">Donar</button>
+    <button class="tab" role="tab" id="tab-pedir" aria-controls="p-pedir" aria-selected="false" tabindex="-1">Pedir con receta</button>
+  </div>
+
+  <div class="panel" id="p-donar" role="tabpanel" aria-labelledby="tab-donar">
+    <div class="rules"><b>Solo aceptamos:</b>
+      <ul><li>Envases cerrados y sellados, con más de 6 meses para vencer.</li><li>Medicamentos que no requieran refrigeración.</li><li>No se reciben psicotrópicos ni estupefacientes.</li></ul></div>
+    <form id="f-donar" class="grid" novalidate>
+      <div><label for="d-nom">Medicamento</label><input id="d-nom" required placeholder="Ej. Paracetamol"></div>
+      <div><label for="d-conc">Concentración y presentación</label><input id="d-conc" required placeholder="Ej. 500 mg, caja x 100 tabletas"></div>
+      <div><label for="d-cant">Cantidad de envases</label><input id="d-cant" type="number" min="1" value="1" required></div>
+      <div><label for="d-venc">Fecha de vencimiento</label><input id="d-venc" type="date" required><small id="d-venc-msg">Debe vencer en más de 6 meses.</small></div>
+      <div><label for="d-punto">Dónde lo entregarás</label><select id="d-punto" class="pt-select" required></select></div>
+      <div><label for="d-cel">Celular de contacto</label><input id="d-cel" type="tel" inputmode="numeric" pattern="9[0-9]{8}" required placeholder="9XXXXXXXX"></div>
+      <label class="check full"><input type="checkbox" id="d-ok" required> Confirmo que el envase está sellado y que el medicamento ha sido guardado correctamente.</label>
+      <div class="full"><button class="btn" type="submit">Registrar donación</button></div>
+    </form>
+    <div class="ok" id="ok-donar" role="status" aria-live="polite"><strong id="c-donar"></strong><span>Presenta este código en el punto de entrega. Gracias por cuidar la salud de Huancayo.</span></div>
+  </div>
+
+  <div class="panel" id="p-pedir" role="tabpanel" aria-labelledby="tab-pedir" hidden>
+    <div class="rules"><b>Para pedir necesitas:</b>
+      <ul><li>Una receta médica vigente (foto o PDF legible).</li><li>Tu DNI. Revisaremos la receta antes de confirmar la entrega.</li><li>Entregamos solo la cantidad indicada en la receta.</li></ul></div>
+    <form id="f-pedir" class="grid" novalidate>
+      <div class="full"><label for="p-nom">Nombre completo</label><input id="p-nom" required autocomplete="name"></div>
+      <div><label for="p-dni">DNI</label><input id="p-dni" inputmode="numeric" pattern="[0-9]{8}" maxlength="8" required placeholder="8 dígitos"></div>
+      <div><label for="p-cel">Celular</label><input id="p-cel" type="tel" inputmode="numeric" pattern="9[0-9]{8}" required placeholder="9XXXXXXXX"></div>
+      <div><label for="p-med">Medicamento recetado</label><input id="p-med" list="meds" required placeholder="Busca o escribe"><datalist id="meds"></datalist></div>
+      <div><label for="p-cant">Cantidad según receta</label><input id="p-cant" type="number" min="1" value="1" required></div>
+      <div><label for="p-cmp">N.º de colegiatura (CMP) del médico</label><input id="p-cmp" inputmode="numeric" required placeholder="Ej. 045678"></div>
+      <div><label for="p-punto">Dónde lo recogerás</label><select id="p-punto" class="pt-select" required></select></div>
+      <div class="full"><label for="p-rx">Foto o PDF de la receta</label><input id="p-rx" type="file" accept="image/*,application/pdf" required><small id="p-rx-msg">Que se lean bien la fecha, el sello y la firma.</small></div>
+      <label class="check full"><input type="checkbox" id="p-ok" required> Declaro que la receta es mía o de la persona a mi cargo y que los datos son verdaderos.</label>
+      <div class="full"><button class="btn" type="submit">Enviar pedido</button></div>
+    </form>
+    <div class="ok" id="ok-pedir" role="status" aria-live="polite"><strong id="c-pedir"></strong><span>Revisaremos tu receta y te avisaremos por mensaje al celular cuando esté lista la entrega.</span></div>
+  </div>
+</section>
+
+<section id="inventario" aria-labelledby="t-inv">
+  <h2 id="t-inv">Disponibles ahora</h2>
+  <p class="sub">Lo que otras personas han donado y está listo para entregar.</p>
+  <div class="tools">
+    <div><label for="q">Buscar medicamento</label><input id="q" type="search" placeholder="Ej. amoxicilina"></div>
+    <div><label for="f">Tipo</label><select id="f"><option value="">Todos</option><option value="libre">Venta libre</option><option value="rx">Requiere receta</option></select></div>
+  </div>
+  <div class="list" id="list"></div>
+  <p id="vacio" class="sub" hidden>No encontramos ese medicamento. Prueba con otro nombre o registra tu pedido para que lo busquemos.</p>
+</section>
+
+<section id="como" aria-labelledby="t-como">
+  <h2 id="t-como">Cómo funciona</h2>
+  <p class="sub">Cuatro pasos, sin dinero de por medio.</p>
+  <ol class="steps">
+    <li><b>Registras</b><br>Una donación o un pedido con receta.</li>
+    <li><b>Revisamos</b><br>Un químico farmacéutico valida vencimiento y receta.</li>
+    <li><b>Te avisamos</b><br>Recibes tu código por mensaje.</li>
+    <li><b>Entregas o recoges</b><br>En el punto que elegiste, con tu DNI.</li>
+  </ol>
+</section>
+
+<section id="puntos" aria-labelledby="t-pt">
+  <h2 id="t-pt">Puntos de entrega</h2>
+  <p class="sub">Lugares de ejemplo en Huancayo. Se reemplazarán por los puntos que se confirmen.</p>
+  <div class="points" id="points"></div>
+</section>
+
+<footer>
+  <p><b>Aviso:</b> esta plataforma no reemplaza la consulta médica. No tomes medicamentos sin indicación de un profesional de salud. En una emergencia, llama al 106 (SAMU) o acude al establecimiento más cercano.</p>
+</footer>
+</div>
+
+<script>
+var PUNTOS=[
+ {n:"Punto Centro",d:"Av. Ferrocarril, Huancayo",h:"Lun a Sáb, 9:00 a 18:00"},
+ {n:"Punto El Tambo",d:"Av. Mariscal Castilla, El Tambo",h:"Lun a Vie, 8:00 a 17:00"},
+ {n:"Punto Chilca",d:"Av. Leoncio Prado, Chilca",h:"Lun a Vie, 9:00 a 16:00"}
+];
+var MEDS=[
+ {n:"Paracetamol",c:"500 mg · tabletas",q:120,v:"03/2028",t:"libre"},
+ {n:"Ibuprofeno",c:"400 mg · tabletas",q:60,v:"11/2027",t:"libre"},
+ {n:"Sales de rehidratación oral",c:"sobres",q:80,v:"06/2028",t:"libre"},
+ {n:"Loratadina",c:"10 mg · tabletas",q:40,v:"09/2027",t:"libre"},
+ {n:"Amoxicilina",c:"500 mg · cápsulas",q:30,v:"02/2028",t:"rx"},
+ {n:"Metformina",c:"850 mg · tabletas",q:45,v:"12/2027",t:"rx"},
+ {n:"Losartán",c:"50 mg · tabletas",q:50,v:"05/2028",t:"rx"},
+ {n:"Salbutamol",c:"inhalador 100 mcg",q:12,v:"10/2027",t:"rx"}
+];
+var $=function(s){return document.querySelector(s)};
+
+// Puntos
+var opts='<option value="" disabled selected>Elige un punto</option>'+PUNTOS.map(function(p){return '<option>'+p.n+' ('+p.d+')</option>'}).join('');
+document.querySelectorAll('.pt-select').forEach(function(s){s.innerHTML=opts});
+$('#points').innerHTML=PUNTOS.map(function(p){return '<div class="pt"><h3>'+p.n+'</h3><p>'+p.d+'</p><p>'+p.h+'</p></div>'}).join('');
+$('#meds').innerHTML=MEDS.map(function(m){return '<option value="'+m.n+'">'}).join('');
+
+// Inventario
+function render(){
+  var q=$('#q').value.trim().toLowerCase(),f=$('#f').value;
+  var r=MEDS.filter(function(m){return m.n.toLowerCase().indexOf(q)>-1&&(!f||m.t===f)});
+  $('#list').innerHTML=r.map(function(m){
+    return '<article class="med"><span class="tag '+(m.t==='rx'?'rx':'free')+'">'+(m.t==='rx'?'Requiere receta':'Venta libre')+'</span><h3>'+m.n+'</h3><div class="row"><span>'+m.c+'</span></div><div class="row"><span>'+m.q+' unidades</span><span>Vence '+m.v+'</span></div><button class="btn sec" data-pedir="'+m.n+'">Pedir este</button></article>'}).join('');
+  $('#vacio').hidden=r.length>0;
+}
+$('#q').addEventListener('input',render);$('#f').addEventListener('change',render);render();
+$('#list').addEventListener('click',function(e){
+  var b=e.target.closest('[data-pedir]');if(!b)return;
+  show('pedir');$('#p-med').value=b.dataset.pedir;
+  $('#formularios').scrollIntoView();$('#p-nom').focus();
+});
+
+// Pestañas
+function show(w){
+  ['donar','pedir'].forEach(function(k){
+    var on=k===w;
+    $('#p-'+k).hidden=!on;
+    var t=$('#tab-'+k);t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;
+  });
+}
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){show(t.id.replace('tab-',''))});
+  t.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var o=t.id==='tab-donar'?'pedir':'donar';show(o);$('#tab-'+o).focus()}
+  });
+});
+document.querySelectorAll('[data-go]').forEach(function(b){
+  b.addEventListener('click',function(){show(b.dataset.go);$('#formularios').scrollIntoView();});
+});
+
+// Validación y envío
+function code(p){return p+'-'+Math.random().toString(36).slice(2,7).toUpperCase()}
+function submit(form,okId,cId,prefix,extra){
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(extra&&!extra())return;
+    if(!form.checkValidity()){form.reportValidity();return}
+    $('#'+cId).textContent='Tu código: '+code(prefix);
+    var ok=$('#'+okId);ok.classList.add('show');ok.scrollIntoView({block:'center'});
+    form.reset();
+  });
+}
+submit($('#f-donar'),'ok-donar','c-donar','DON',function(){
+  var v=$('#d-venc').value;if(!v)return true;
+  var min=new Date();min.setMonth(min.getMonth()+6);
+  if(new Date(v)<min){$('#d-venc').setCustomValidity('Debe vencer en más de 6 meses.');$('#f-donar').reportValidity();return false}
+  $('#d-venc').setCustomValidity('');return true;
+});
+$('#d-venc').addEventListener('input',function(){this.setCustomValidity('')});
+submit($('#f-pedir'),'ok-pedir','c-pedir','PED');
+</script>
+</body>
+</html>
